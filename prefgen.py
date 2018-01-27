@@ -62,9 +62,9 @@ ITERATION_DEFAULT = 100
 
 # Parameter values related to preference queries
 # List of rules number
-RULES_LIST = [2, 4, 8, 16, 32]
+RULE_LIST = [2, 4, 8, 16, 32]
 # Default rules number
-RULES_DEFAULT = 8
+RULE_DEFAULT = 8
 # List of levels
 LEVEL_LIST = [1, 2, 4, 8]
 # Default level
@@ -355,7 +355,7 @@ def gen_experiment_list():  # IGNORE:too-many-statements
     # Default parameters
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
-               RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
+               RUL: RULE_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
                TOP: TOPK_DEFAULT}
     # Attributes number variation (no deletions)
     for att_number in ATTRIBUTE_LIST:
@@ -397,7 +397,7 @@ def gen_experiment_list():  # IGNORE:too-many-statements
         add_experiment(exp_list, rec)
 
     # Rules number variation
-    for rules_number in RULES_LIST:
+    for rules_number in RULE_LIST:
         rec = def_rec.copy()
         rec[RUL] = rules_number
         add_experiment(exp_list, rec)
@@ -582,7 +582,7 @@ def summarize_iterations():
     '''
     exp_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
-               RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
+               RUL: RULE_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
                TOP: TOPK_DEFAULT}
     time_list = []
     mem_list = []
@@ -614,13 +614,13 @@ def summarize_all():
     exp[ATT] = ATTRIBUTE_LIST
     exp[TUP] = TUPLE_LIST
     exp[INS] = INSERTION_LIST
-    exp[RUL] = RULES_LIST
+    exp[RUL] = RULE_LIST
     exp[LEV] = LEVEL_LIST
     exp[IND] = INDIFF_LIST
     exp[TOP] = TOPK_LIST
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
-               RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
+               RUL: RULE_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
                TOP: TOPK_DEFAULT}
     # Insertions and deletions
     for key in exp:
@@ -628,14 +628,14 @@ def summarize_all():
     # No deletions
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: 0, INS: INSERTION_DEFAULT,
-               RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
+               RUL: RULE_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
                TOP: TOPK_DEFAULT}
     for key in exp:
         summarize_details(key, exp[key], def_rec)
     # No insertions
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: 0,
-               RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
+               RUL: RULE_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
                TOP: TOPK_DEFAULT}
     for key in exp:
         if key != INS:
@@ -643,7 +643,7 @@ def summarize_all():
     # Deletions (with maximum number of tuples)
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_MAX,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
-               RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
+               RUL: RULE_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
                TOP: TOPK_DEFAULT}
     summarize_details(DEL, DELETION_LIST, def_rec)
     def_rec[INS] = 0
