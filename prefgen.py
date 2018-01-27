@@ -18,7 +18,7 @@ INS = 'ins'
 RUL = 'rul'
 LEV = 'lev'
 IND = 'ind'
-TOPK = 'topk'
+TOP = 'top'
 ALGORITHM = 'algorithm'
 
 # Result fields
@@ -188,8 +188,8 @@ def get_query_id(exp_conf):
     Return a query ID for given parameters
     '''
     operation = 'best'
-    if exp_conf[TOPK] != -1:
-        operation = TOPK + str(exp_conf[TOPK])
+    if exp_conf[TOP] != -1:
+        operation = TOP + str(exp_conf[TOP])
     return RUL + str(exp_conf[RUL]) + \
         LEV + str(exp_conf[LEV]) + \
         IND + str(exp_conf[IND]) + \
@@ -303,8 +303,8 @@ def gen_query(exp_conf):
     rules_list = gen_rules(exp_conf)
     pref = '\nAND\n'.join(rules_list)
     topk = ''
-    if exp_conf[TOPK] != -1:
-        topk = 'TOPK(' + str(exp_conf[TOPK]) + ')'
+    if exp_conf[TOP] != -1:
+        topk = 'TOP(' + str(exp_conf[TOP]) + ')'
     query = QUERY.format(t=topk, p=pref)
     out_file = open(filename, 'w')
     out_file.write(query)
@@ -356,7 +356,7 @@ def gen_experiment_list():  # IGNORE:too-many-statements
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
                RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
-               TOPK: TOPK_DEFAULT}
+               TOP: TOPK_DEFAULT}
     # Attributes number variation (no deletions)
     for att_number in ATTRIBUTE_LIST:
         rec = def_rec.copy()
@@ -432,7 +432,7 @@ def gen_experiment_list():  # IGNORE:too-many-statements
     # indifferent attributes variation
     for topk_number in TOPK_LIST:
         rec = def_rec.copy()
-        rec[TOPK] = topk_number
+        rec[TOP] = topk_number
         add_experiment(exp_list, rec)
         rec[DEL] = 0
         add_experiment(exp_list, rec)
@@ -583,7 +583,7 @@ def summarize_iterations():
     exp_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
                RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
-               TOPK: TOPK_DEFAULT}
+               TOP: TOPK_DEFAULT}
     time_list = []
     mem_list = []
     for rcount in range(RUN_COUNT):
@@ -617,11 +617,11 @@ def summarize_all():
     exp[RUL] = RULES_LIST
     exp[LEV] = LEVEL_LIST
     exp[IND] = INDIFF_LIST
-    exp[TOPK] = TOPK_LIST
+    exp[TOP] = TOPK_LIST
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
                RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
-               TOPK: TOPK_DEFAULT}
+               TOP: TOPK_DEFAULT}
     # Insertions and deletions
     for key in exp:
         summarize_details(key, exp[key], def_rec)
@@ -629,14 +629,14 @@ def summarize_all():
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: 0, INS: INSERTION_DEFAULT,
                RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
-               TOPK: TOPK_DEFAULT}
+               TOP: TOPK_DEFAULT}
     for key in exp:
         summarize_details(key, exp[key], def_rec)
     # No insertions
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_DEFAULT,
                DEL: DELETION_DEFAULT, INS: 0,
                RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
-               TOPK: TOPK_DEFAULT}
+               TOP: TOPK_DEFAULT}
     for key in exp:
         if key != INS:
             summarize_details(key, exp[key], def_rec)
@@ -644,7 +644,7 @@ def summarize_all():
     def_rec = {ATT: ATTRIBUTE_DEFAULT, TUP: TUPLE_MAX,
                DEL: DELETION_DEFAULT, INS: INSERTION_DEFAULT,
                RUL: RULES_DEFAULT, LEV: LEVEL_DEFAULT, IND: INDIFF_DEFAULT,
-               TOPK: TOPK_DEFAULT}
+               TOP: TOPK_DEFAULT}
     summarize_details(DEL, DELETION_LIST, def_rec)
     def_rec[INS] = 0
     summarize_details(DEL, DELETION_LIST, def_rec)
@@ -671,7 +671,7 @@ def confidence_interval_all():
     Calculate confidence interval for all results
     '''
     # Deletions and insertions
-    key_list = [ATT, TUP, DEL, INS, RUL, LEV, IND, TOPK]
+    key_list = [ATT, TUP, DEL, INS, RUL, LEV, IND, TOP]
     for key in key_list:
         in_file = RUNTIME_SUMMARY_DIR + os.sep + key + '.csv'
         out_file = RUNTIME_RESULT_DIR + os.sep + key + '.csv'
@@ -680,7 +680,7 @@ def confidence_interval_all():
         out_file = MEMORY_RESULT_DIR + os.sep + key + '.csv'
         confidence_interval(key, in_file, out_file)
     # No deletions
-    key_list = [ATT, TUP, INS, RUL, LEV, IND, TOPK]
+    key_list = [ATT, TUP, INS, RUL, LEV, IND, TOP]
     for key in key_list:
         in_file = RUNTIME_SUMMARY_DIR + os.sep + key + '_no_del.csv'
         out_file = RUNTIME_RESULT_DIR + os.sep + key + '_no_del.csv'
@@ -689,7 +689,7 @@ def confidence_interval_all():
         out_file = MEMORY_RESULT_DIR + os.sep + key + '_no_del.csv'
         confidence_interval(key, in_file, out_file)
     # No insertions
-    key_list = [ATT, TUP, DEL, RUL, LEV, IND, TOPK]
+    key_list = [ATT, TUP, DEL, RUL, LEV, IND, TOP]
     for key in key_list:
         in_file = RUNTIME_SUMMARY_DIR + os.sep + key + '_no_ins.csv'
         out_file = RUNTIME_RESULT_DIR + os.sep + key + '_no_ins.csv'
