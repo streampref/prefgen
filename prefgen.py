@@ -734,7 +734,7 @@ def get_arguments(print_help=False):
     Get arguments
     '''
     import argparse
-    parser = argparse.ArgumentParser('IncSimpleGen')
+    parser = argparse.ArgumentParser(os.path.basename(__file__))
     parser.add_argument('-g', '--gen', action="store_true",
                         default=False,
                         help='Generate files')

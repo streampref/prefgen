@@ -41,6 +41,14 @@ The number of iterations are controlled by the variable **ITERATION_DEFAULT**.
 
 # Command Line
 
-- -g/--gen: Generate files
-- -r/--run: Run experiments
-- -s/--summarize: Summarize experiments results
+```
+prefgen.py [-h] [-g] [-r] [-s]:
+
+    -h/--help: display help message
+
+    -g/--gen: Generate files
+
+    -r/--run: Run experiments
+
+    -s/--summarize: Summarize experiments results
+```
