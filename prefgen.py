@@ -754,10 +754,10 @@ def main():
     '''
     Main routine
     '''
-    create_directories()
     exp_list = gen_experiment_list()
     args = get_arguments()
     if args.gen:
+        create_directories()
         print 'Generating table data'
         gen_all_tables(exp_list)
         print 'Generating queries'
