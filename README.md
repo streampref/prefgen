@@ -37,18 +37,14 @@ The parameters are the following:
 The relations are composed of integer attributes.
 At every instant, __INS__ tuples are inserted and __DEL__ tuples are deleted.
 The number of iterations are controlled by the variable __ITERATION_DEFAULT__.
-
+Please see the related publications for more information.
 
 # Command Line
 
 ```
 prefgen.py [-h] [-g] [-r] [-s]:
-
     -h/--help: display help message
-
     -g/--gen: Generate files
-
     -r/--run: Run experiments
-
     -s/--summarize: Summarize experiments results
 ```
