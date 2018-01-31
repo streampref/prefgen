@@ -1,4 +1,4 @@
-**Table of Contents**
+# Table of Contents
 
 - [Introduction](#introduction)
 - [Command Line](#command-line)
@@ -9,34 +9,34 @@ PrefGen is a dataset generator with conditional preferences for [StreamPref](htt
 PrefGen generates the relations, queries and auxiliary files for the execution of experiments with StreamPref.
 The experiments parameters must be updated directly in the source code.
 The parameters are the following:
-- **ATT**: Number of attributes;
-  - **ATTRIBUTE_LIST**: List with variation on parameter **ATT**;
-  - **ATTRIBUTE_DEFAULT**: Default value for parameter **ATT**; 
-- **TUP**: Number of initial tuples;
-  - **TUPLE_LIST**: List with variation on parameter **ATT**;
-  - **TUPLE_DEFAULT**: Default value for parameter **ATT**; 
-- **DEL**: Number of deletions per instant;
-  - **DELETION_LIST**: List with variation on parameter **ATT**;
-  - **DELETION_DEFAULT**: Default value for parameter **ATT**; 
-- **INS**: Number of insertions per instant;
-  - **INSERTION_LIST**: List with variation on parameter **ATT**;
-  - **INSERTION_DEFAULT**: Default value for parameter **ATT**; 
-- **RUL**: Number of rules;
-  - **RULE_LIST**: List with variation on parameter **ATT**;
-  - **RULE_DEFAULT**: Default value for parameter **ATT**; 
-- **LEV**: Maximum preference level;
-  - **LEVEL_LIST**: List with variation on parameter **ATT**;
-  - **LEVEL_DEFAULT**: Default value for parameter **ATT**; 
-- **IND**: Number of indifferent attributes;
-  - **INDIFF_LIST**: List with variation on parameter **ATT**;
-  - **INDIFF_DEFAULT**: Default value for parameter **ATT**; 
-- **TOP**: Number of top-k tuples to be returned.
-  - **TOPK_LIST**: List with variation on parameter **ATT**;
-  - **TOPK_DEFAULT**: Default value for parameter **ATT**; 
+- __ATT__: Number of attributes;
+  - __ATTRIBUTE_LIST__: List with variation on parameter __ATT__;
+  - __ATTRIBUTE_DEFAULT__: Default value for parameter __ATT__; 
+- __TUP__: Number of initial tuples;
+  - __TUPLE_LIST__: List with variation on parameter __ATT__;
+  - __TUPLE_DEFAULT__: Default value for parameter __ATT__; 
+- __DEL__: Number of deletions per instant;
+  - __DELETION_LIST__: List with variation on parameter __ATT__;
+  - __DELETION_DEFAULT__: Default value for parameter __ATT__; 
+- __INS__: Number of insertions per instant;
+  - __INSERTION_LIST__: List with variation on parameter __ATT__;
+  - __INSERTION_DEFAULT__: Default value for parameter __ATT__; 
+- __RUL__: Number of rules;
+  - __RULE_LIST__: List with variation on parameter __ATT__;
+  - __RULE_DEFAULT__: Default value for parameter __ATT__; 
+- __LEV__: Maximum preference level;
+  - __LEVEL_LIST__: List with variation on parameter __ATT__;
+  - __LEVEL_DEFAULT__: Default value for parameter __ATT__; 
+- __IND__: Number of indifferent attributes;
+  - __INDIFF_LIST__: List with variation on parameter __ATT__;
+  - __INDIFF_DEFAULT__: Default value for parameter __ATT__; 
+- __TOP__: Number of top-k tuples to be returned.
+  - __TOPK_LIST__: List with variation on parameter __ATT__;
+  - __TOPK_DEFAULT__: Default value for parameter __ATT__; 
 
 The relations are composed of integer attributes.
-At every instant, **INS** tuples are inserted and **DEL** tuples are deleted.
-The number of iterations are controlled by the variable **ITERATION_DEFAULT**.
+At every instant, __INS__ tuples are inserted and __DEL__ tuples are deleted.
+The number of iterations are controlled by the variable __ITERATION_DEFAULT__.
 
 
 # Command Line
